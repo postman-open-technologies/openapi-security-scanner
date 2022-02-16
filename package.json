@@ -4,7 +4,7 @@
   "description": "We need a basic security API to help API producers address the most common challenges with securing their APIs. Taking an existing open source solution and wrapping it as an API that will run in common cloud infrastructure, allowing anyone to fork and deploy to support their own operations, while allowing us to use to secure APIs as part of workshops, demos, and storytelling.",
   "main": "index.js",
   "scripts": {
-    "decisions:build": "adr-log -i ./ARCHITECTURE.md -d ./decisions -e \"node_modules/**/*\""
+    "decisions:build": "adr-log -i ./docs/decisions/index.md -d ./docs/decisions -e \"[^0-9]*.md\""
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   "homepage": "https://github.com/postman-open-technologies/openapi-security-scanner#readme",
   "dependencies": {
     "adr-log": "^2.2.0"
+  },
+  "devDependencies": {
+    "madr": "^2.1.2"
   }
 }
