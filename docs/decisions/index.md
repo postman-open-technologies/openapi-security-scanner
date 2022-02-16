@@ -12,7 +12,7 @@ wrapping it as an API that will run in common cloud infrastructure, allowing
 anyone to fork and deploy to support their own operations, while allowing us to
 use to secure APIs as part of workshops, demos, and storytelling.
 
-## Criteria
+## Decision Drivers
 
 - It must be easy to demonstrate.
 - It must run on self-managed infrastructure.
@@ -22,12 +22,12 @@ use to secure APIs as part of workshops, demos, and storytelling.
 
 <!-- adrlog -->
 
-* [ADR-0000](decisions/0000-use-markdown-architectural-decision-records.md) - Use Markdown Architectural Decision Records
-* [ADR-0001](decisions/0001-owasp-zap-interaction.md) - Communicating with OWASP ZAP as the Scanning Engine
+* [ADR-0000](0000-use-markdown-architectural-decision-records.md) - Use Markdown Architectural Decision Records
+* [ADR-0001](0001-choosing-an-external-communication-model.md) - Choosing an External Communication Model
+* [ADR-0002](0002-choosing-a-scanning-engine.md) - Choosing a Scanner Engine
+* [ADR-0003](0003-communicating-with-owasp-zap.md) - Communicating with OWASP ZAP as the Scanning Engine
 
 <!-- adrlogstop -->
-
-
 
 
 
