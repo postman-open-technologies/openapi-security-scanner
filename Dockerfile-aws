@@ -1,0 +1,6 @@
+FROM public.ecr.aws/sam/build-java11
+
+COPY . /var/task
+RUN ./gradlew :aws-lambda:build
+RUN mkdir /asset && \
+    cp /var/task/infrastructure/aws/lambda/build/libs/* /asset/
