@@ -21,7 +21,7 @@ dependencies {
 
     implementation("software.amazon.awscdk:aws-cdk-lib:2.10.0")
     implementation("software.constructs:constructs:10.0.62")
-    implementation(project(":infrastructure:aws:lambda"))
+    runtimeOnly(project(":infrastructure:aws:lambda"))
 }
 
 tasks.test {

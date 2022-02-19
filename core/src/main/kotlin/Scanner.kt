@@ -1,7 +1,5 @@
 package com.postman.securityscanner.core
 
-import org.zaproxy.clientapi.core.ApiResponseElement
-import org.zaproxy.clientapi.core.ClientApi
 import org.zaproxy.zap.ZAP
 
 class Scanner {
@@ -23,7 +21,7 @@ class Scanner {
                 )
             )
 
-
+/*
             val api = ClientApi("localhost", 8080)
             val resp = api.spider.scan("https://www.google.com", null, null, null, null)
             val scanId = (resp as ApiResponseElement).value
@@ -32,6 +30,7 @@ class Scanner {
                 Thread.sleep(1000)
                 progress = Integer.parseInt((api.spider.status(scanId) as ApiResponseElement).value)
             } while (progress < 100)
+ */
         }
     }
 }

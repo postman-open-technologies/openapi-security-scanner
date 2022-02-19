@@ -18,6 +18,7 @@ dependencies {
 
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.1")
     implementation("com.amazonaws:aws-lambda-java-core:1.2.1")
+    implementation("com.amazonaws:aws-lambda-java-events:3.11.0")
     implementation("com.google.code.gson:gson:2.8.6")
     implementation(project(":core"))
 }
