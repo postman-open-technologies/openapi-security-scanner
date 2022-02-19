@@ -10,14 +10,8 @@ class Handler : RequestHandler<Map<String, String>, String> {
     private var gson: Gson = GsonBuilder().setPrettyPrinting().create()
     override fun handleRequest(event: Map<String, String>?, context: Context?): String {
         val logger = context!!.logger
-        val response = "200 OK"
-        // log execution details
-        logger.log("ENVIRONMENT VARIABLES: " + gson.toJson(System.getenv()))
         logger.log("CONTEXT: " + gson.toJson(context))
-        logger.log("MESSAGE:" + Scanner.message + "\n")
-        // process event
-        logger.log("EVENT: " + gson.toJson(event))
-        logger.log("EVENT TYPE: " + event!!::class)
-        return response
+        Scanner.scan()
+        return "200 OK"
     }
 }

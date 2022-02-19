@@ -15,6 +15,8 @@ repositories {
 
 dependencies {
     testImplementation(kotlin("test"))
+    implementation("org.zaproxy:zap:2.11.1")
+    implementation("org.zaproxy:zap-clientapi:1.10.0")
 }
 
 tasks.test {

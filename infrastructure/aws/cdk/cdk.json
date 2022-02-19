@@ -1,5 +1,5 @@
 {
-  "app": "cd ../../.. && ./gradlew -q aws-cdk:run",
+  "app": "cd ../../.. && ./gradlew -q :infrastructure:aws:cdk:run",
   "watch": {
     "include": [
       "**"

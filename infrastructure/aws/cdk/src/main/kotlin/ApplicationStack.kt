@@ -1,3 +1,4 @@
+import software.amazon.awscdk.Duration
 import software.amazon.awscdk.Stack
 import software.amazon.awscdk.StackProps
 import software.amazon.awscdk.services.apigateway.*
@@ -15,7 +16,9 @@ class ApplicationStack(scope: Construct, id: String, props: StackProps? = null) 
         val function = LambdaFunction.Builder.create(this, "security-scanner-function-$apiSuffix-$stageName")
             .runtime(Runtime.JAVA_11)
             .handler("com.postman.securityscanner.infrastructure.aws.lambda.Handler")
-            .code(Code.fromAsset("../lambda/build/distributions/aws-lambda-1.0-SNAPSHOT.zip"))
+            .code(Code.fromAsset("../lambda/build/distributions/lambda-1.0-SNAPSHOT.zip"))
+            .timeout(Duration.minutes(15))
+            .memorySize(1024)
             .build()
 
         val api = RestApi.Builder.create(this, "security-scanner-api-$apiSuffix")
