@@ -8,7 +8,7 @@ target
 .project
 .settings
 *.iml
-
+.idea
 # CDK asset staging directory
 .cdk.staging
 cdk.out
