@@ -14,7 +14,7 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
+    testImplementation("io.kotest:kotest-runner-junit5:5.1.0")
     implementation("org.zaproxy:zap:2.11.1")
     implementation("org.zaproxy:zap-clientapi:1.10.0")
 }
