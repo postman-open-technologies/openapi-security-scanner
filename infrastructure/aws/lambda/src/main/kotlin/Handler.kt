@@ -13,8 +13,12 @@ class Handler : RequestHandler<APIGatewayProxyRequestEvent, APIGatewayProxyRespo
     override fun handleRequest(event: APIGatewayProxyRequestEvent?, context: Context?): APIGatewayProxyResponseEvent {
         val logger = context!!.logger
         logger.log("CONTEXT: " + gson.toJson(context))
+
+        val zapPath = "/var/task/zap/zap.sh"
+        val zapDir = "/var/task/.ZAP"
+
         val seedUrl = event?.queryStringParameters?.get("url").orEmpty()
-        val report = Scanner.scan(seedUrl)
+        val report = Scanner.scan(zapPath, zapDir, seedUrl)
         return APIGatewayProxyResponseEvent()
             .withStatusCode(200)
             .withHeaders(mapOf("Content-Type" to "application/json"))

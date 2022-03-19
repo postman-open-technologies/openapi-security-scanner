@@ -21,7 +21,7 @@
     "adr-log": "^2.2.0"
   },
   "devDependencies": {
-    "aws-cdk": "^2.13.0",
+    "aws-cdk": "^2.16.0",
     "madr": "^2.1.2"
   }
 }

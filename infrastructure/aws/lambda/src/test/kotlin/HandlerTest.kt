@@ -2,7 +2,6 @@ import com.amazonaws.services.lambda.runtime.ClientContext
 import com.amazonaws.services.lambda.runtime.CognitoIdentity
 import com.amazonaws.services.lambda.runtime.Context
 import com.amazonaws.services.lambda.runtime.LambdaLogger
-import com.amazonaws.services.lambda.runtime.events.APIGatewayProxyRequestEvent
 import com.postman.securityscanner.infrastructure.aws.lambda.Handler
 import java.io.IOException
 import kotlin.test.Test
@@ -72,6 +71,6 @@ class HandlerTest {
         }
 
         val handler = Handler()
-        handler.handleRequest(APIGatewayProxyRequestEvent(), context)
+        //handler.handleRequest(APIGatewayProxyRequestEvent(), context)
     }
 }

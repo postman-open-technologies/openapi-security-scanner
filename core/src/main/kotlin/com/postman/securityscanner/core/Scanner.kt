@@ -1,11 +1,13 @@
 package com.postman.securityscanner.core
 
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.zaproxy.clientapi.core.ApiResponse
 import org.zaproxy.clientapi.core.ApiResponseElement
 import org.zaproxy.clientapi.core.ClientApi
 import org.zaproxy.clientapi.core.ClientApiException
-import org.zaproxy.zap.ZAP
 import java.io.File
+import java.io.IOException
 
 object Scanner {
     private var activeConnection: Boolean = false
@@ -13,27 +15,23 @@ object Scanner {
     private const val ADDRESS = "0.0.0.0"
     private val clientApi = ClientApi(ADDRESS, PORT, true)
 
-    fun scan(seedUrl: String): String {
-        if (activeConnection) {
-            throw Exception("Already connected")
+    fun scan(zapPath: String, zapDir: String, seedUrl: String): String {
+        if (!activeConnection) {
+            runBlocking {
+                launch {
+                    exec(
+                        "$zapPath " +
+                                "-dir $zapDir " +
+                                "-daemon " +
+                                "-host 0.0.0.0 " +
+                                "-port 8090 " +
+                                "-config api.addrs.addr.name=.* " +
+                                "-config api.addrs.addr.regex=true " +
+                                "-config api.disablekey=true"
+                    )
+                }
+            }
         }
-        ZAP.main(
-            arrayOf(
-                "-daemon",
-                "-host",
-                ADDRESS,
-                "-port",
-                PORT.toString(),
-                "-addoninstall",
-                "reports",
-                "-config",
-                "api.addrs.addr.name=.*",
-                "-config",
-                "api.addrs.addr.regex=true",
-                "-config",
-                "api.disablekey=true"
-            )
-        )
 
         try {
             clientApi.waitForSuccessfulConnectionToZap(50, 2)
@@ -42,14 +40,12 @@ object Scanner {
             throw exception
         }
 
-        if (!activeConnection) throw Exception("No active connection")
         try {
             val apiResponse: ApiResponse = clientApi.spider.scan(seedUrl, null, null, null, null)
-            var scanid: String?
             var progress: Int
 
             // The scan now returns a scan id to support concurrent scanning
-            scanid = (apiResponse as ApiResponseElement).value
+            var scanid = (apiResponse as ApiResponseElement).value
 
             // Poll the status until it completes
             while (true) {
@@ -116,5 +112,21 @@ object Scanner {
         } finally {
         }
         return "Couldn't scan"
+    }
+
+
+    private fun exec(
+        cmd: String,
+        workingDir: File = File(".")
+    ) {
+        try {
+            ProcessBuilder(*cmd.split("\\s".toRegex()).toTypedArray())
+                .directory(workingDir)
+                .redirectOutput(ProcessBuilder.Redirect.INHERIT)
+                .redirectError(ProcessBuilder.Redirect.INHERIT)
+                .start()
+        } catch (e: IOException) {
+            e.printStackTrace()
+        }
     }
 }
