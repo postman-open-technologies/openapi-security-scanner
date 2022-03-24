@@ -71,6 +71,6 @@ class HandlerTest {
         }
 
         val handler = Handler()
-        handler.handleRequest(mapOf(), context)
+        //handler.handleRequest(APIGatewayProxyRequestEvent(), context)
     }
 }
