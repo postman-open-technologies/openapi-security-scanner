@@ -16,7 +16,7 @@ These are possible tools being recommended to build this API, but the work is no
 ## Key Links
 
 - [Repository](https://github.com/postman-open-technologies/openapi-security-scanner/blob/main/README.md)
-- [Workspace](https://postman.postman.co/workspace/Postman-Open-Technologies---Ope~3fb84407-266b-4f43-bdf0-fe0bc22d0e05/overview)
+- [Workspace](https://www.postman.com/postman/workspace/postman-open-technologies-openapi-security-scanner)
 
 ## Platform Governance
 This is the Postman Open Technologies approach to platform governance. It is applied across all APIs being developed and sustained as part of our team activity. This should act as a living checklist that is published on the workspace overview and the README for the Github repository supporting the project.
